@@ -3,6 +3,8 @@ package zimo.example.com.calculator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -110,37 +112,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         List numberList = Arrays.asList(numbers);
         List operatorsList = Arrays.asList(operators);
 
-        if (){
-//            Toast.makeText(MainActivity.this,"1",Toast.LENGTH_LONG).show();
-            String show = textViewShow.getText().toString();
-            Toast.makeText(MainActivity.this,show,Toast.LENGTH_LONG).show();
-            if (show.equals("0")){
-                textViewShow.setText(show);
-                number = Integer.parseInt(((Button)findViewById(v.getId())).getText().toString());
-                textViewShow.setText(((Button)findViewById(v.getId())).getText());
-            }else {
-                if (!show.contains(".")){
-                    show += textViewShow.getText();
-                    textViewShow.setText(show);
-                    int length = show.length();
-                    for (int i = 0;i<length;i++){
-                        number += Integer.parseInt(String.valueOf(show.charAt(i)))*10*(length-1);
-                    }
 
-                }else {
+    }
 
-                }
-            }
-        }else if (operatorsList.contains(v.getId())) {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
 
-        }else if (v.getId() == R.id.buttonDot){
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
-        }else if (v.getId() == R.id.buttonBackspace){
-
-        }else if (v.getId() == R.id.buttonClear) {
-
-        }else if (v.getId() == R.id.buttonEqual){
-
+        switch (id) {
+            case R.id.calculator:
+                Toast.makeText(this, "这个就是计算器！", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.transformLength:
+                Intent intent = new Intent(MainActivity.this, TransformateLength.class);
+                startActivity(intent);
+                break;
+            case R.id.transformBase:
+                Intent intent2 = new Intent(MainActivity.this, TransformateBase.class);
+                startActivity(intent2);
+                break;
         }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }
